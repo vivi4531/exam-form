@@ -1,6 +1,10 @@
-import './style.css'
+import "./sass/style.scss";
+import "./form.js"; 
 
-document.querySelector('#app').innerHTML = `
-  <h1>Hello Vite!</h1>
-  <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
-`
+"use strict";
+
+window.addEventListener("DOMContentLoaded", init);
+
+function init() {
+  console.log("Der er hul igennem 🥳");
+}
