@@ -6,6 +6,15 @@ section img {
 
 fieldset {
   height: 100vh;
+  border: none;
+
+  .form-layout {
+    .back-arrow {
+      padding: 2em 0 0 2em;
+      // border-radius: 50%;
+      // box-shadow: 0px 8px 15px rgb(0 0 0 / 10%);
+    }
+  }
 }
 
 .form-header {
@@ -15,6 +24,20 @@ fieldset {
   box-shadow: 0px 8px 15px rgb(0 0 0 / 10%);
   color: $white;
   padding: 1em;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .beer-basket {
+    display: flex;
+    justify-content: flex-end;
+
+    p {
+      font-family: "Special Elite", cursive;
+      font-size: 1.5em;
+    }
+  }
 }
 
 .form-content {
@@ -30,6 +53,16 @@ fieldset {
   padding: 2em;
   color: $black;
 
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      font-size: 2em;
+    }
+  }
+
   h2,
   h3 {
     text-align: center;
@@ -39,7 +72,13 @@ fieldset {
     width: 30%;
   }
 
-  button {
+  .beer-image {
+    border-radius: 50%;
+    box-shadow: 0px 8px 15px rgb(0 0 0 / 10%);
+    border: 1px solid $darkbrown;
+  }
+
+  .button-basic {
     background-color: $darkgreen;
     color: $white;
     border: none;
@@ -55,5 +94,34 @@ fieldset {
 
   .button-topthree {
     opacity: 0.5;
+  }
+
+  .button-group {
+    display: flex;
+    background-color: $darkbrown;
+    color: white;
+    border: none;
+    border-radius: 2em;
+    padding: 0em 1em;
+    box-shadow: 0px 8px 15px rgb(0 0 0 / 10%);
+    justify-content: space-between;
+    align-items: center;
+    width: 35%;
+
+    .button-amount {
+      color: $white;
+      border: none;
+      background-color: transparent;
+      color: white;
+      border: none;
+      /* padding: 1em; */
+      font-family: "Raleway", sans-serif;
+      font-size: 1.5em;
+      margin: 0.5em;
+    }
+
+    p {
+      font-size: 1.5em;
+    }
   }
 }
