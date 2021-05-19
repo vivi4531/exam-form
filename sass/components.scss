@@ -32,10 +32,15 @@ fieldset {
   .beer-basket {
     display: flex;
     justify-content: flex-end;
+    align-items: flex-start;
+
+    img {
+      width: 20%;
+    }
 
     p {
       font-family: "Special Elite", cursive;
-      font-size: 1.5em;
+      font-size: 3em;
     }
   }
 }
@@ -59,6 +64,20 @@ fieldset {
     align-items: center;
 
     h2 {
+      font-size: 2em;
+    }
+
+    .menu-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .menu-price .button-group {
+      width: 100%;
+    }
+
+    .menu-price h3 {
       font-size: 2em;
     }
   }
@@ -121,6 +140,7 @@ fieldset {
     }
 
     p {
+      font-family: "Special Elite", cursive;
       font-size: 1.5em;
     }
   }
