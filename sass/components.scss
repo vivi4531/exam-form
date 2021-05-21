@@ -117,6 +117,10 @@ fieldset {
     border-bottom: 1px solid $darkgreen;
     padding-bottom: 5vh;
 
+    .form-expires {
+      display: flex;
+    }
+
     h2 {
       font-size: 2em;
     }
@@ -214,5 +218,35 @@ fieldset {
       font-family: "Special Elite", cursive;
       font-size: 1.5em;
     }
+  }
+
+  label {
+    font-family: "Raleway", sans-serif;
+    font-weight: 300;
+    font-size: 2em;
+    text-align: left;
+  }
+
+  label[for="table"] {
+    border-bottom: 1px solid darkgreen;
+    padding-bottom: 1em;
+  }
+
+  input {
+    background-color: $mediumbrown;
+    border: none;
+    box-shadow: 0px 8px 15px rgb(0 0 0 / 10%);
+    border-radius: 2em;
+    padding: 1em 6em 1em 2em;
+    width: 100%;
+
+    input[type="text"]:placeholder-shown {
+      color: red;
+    }
+  }
+
+  input[id="month"],
+  input[id="year"] {
+    width: 0;
   }
 }
