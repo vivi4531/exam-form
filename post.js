@@ -1,46 +1,57 @@
 "use strict";
 
-window.addEventListener("DOMContentLoaded", init);
-
-const endpoint = "https://teamellewoods.herokuapp.com/order"; 
-//const apiKey = "60740be1f592f7113340f013";
-const headers = {
-"Content-Type": "application/json; charset=utf-8",
-// "x-apikey": apiKey,
-"cache-control": "no-cache",
-}; 
-
-
+//POST ORDER 
 export function post(data){
-    console.log(data); 
-    const postData = JSON.stringify(data); 
-    fetch(endpoint, {
-      method : "POST", 
-      headers : headers,
-      body: postData,
-    })
-    .then((res) => res.json())
-    .then((data) => console.log(data));  
-  }
-  
+const endpoint = "https://teamellewoods.herokuapp.com/order"; 
+
+// const order = [
+//       { name: "Hoppily Ever After", amount: 1 },
+//       { name: "Row 26", amount: 2 },
+//     ];
+
+fetch(endpoint, {
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Success:', data);
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+}
+
+
+
+
+export function listenForClickOnSubmit(){  
   const form = document.querySelector("form"); 
 
-  export function sendData(){
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
+  // export function sendData(){
+  form.addEventListener("submit", (e) => {
+  e.preventDefault();
   
+  const beertype = document.querySelector(".beertype"); 
+  const beeramount = document.querySelector(".beeramount"); 
+  console.log(e.elements.beertype.value); 
+  console.log(beeramount.value); 
+
+  })
+}
+
+
 
       //Send id, beer, amount
-        const orderid = ; 
-        const beertype = ; 
-        const beeramount = ; 
+        // const orderid = ; 
+        
 
         //NOTE
         //Fra Jonas GitHub 
-        // const order = [
-        //     { name: "Hoppily Ever After", amount: 1 },
-        //     { name: "Row 26", amount: 2 },
-        //   ];
+       
 
 
 
@@ -52,16 +63,15 @@ export function post(data){
       const improve = getCheckboxValues("improve");
       const interest = getCheckboxValues("interest"); */
   
-    post({
+    //post({
 
         //FooBar form 
-        orderid; 
-        beertype; 
-        beeramount; 
+        // orderid; 
+        // beertype; 
+        // beeramount; 
 
-        orderid: form.elements.orderid.value, 
-        beertype: form.elements.beer.value, 
-        beeramount: form.elements.amount.value
+        // orderid: e.elements.orderid.value, 
+        
 
        /*  tablenumber: form.elements.table.value, 
         cardholdername: form.elements.cardholder_name.value, 
@@ -92,7 +102,5 @@ export function post(data){
       interested_areas: interest, 
       comment: form.elements.comments.value */
     
-    }); 
-    });}
-  
-  sendData()
+    //}); 
+    //});}
