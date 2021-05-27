@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+#beer-menu img{
+    width: 50%;
+    border-radius: 50%;}
+
+      .hide{
+        display: none;
+      }
+    </style>
+</head>
+<body>
+
+
+    <!-- Menu listeview -->
+    <div class="form-header">
+        <h1>Menu</h1>
+        <div class="beer-basket">
+          <p id="basketamount">0</p> 
+          <img src="public/img/icons/beermug-single.png" alt="">
+        </div>
+      </div>
+
+<section id="beer-menu" class="">
+    <template class="beertemplate">
+        <div>
+            <div class="beer-info">
+              <img class="beer-image" src="public/img/beer/githop.png" alt="">
+                <div class="menu-column">
+                  <h2 class="beer-name">Øl navn</h2>
+                  <p class="alc">IPA, 5%</p>
+                </div>
+            </div>
+            <div class="menu-price">
+              <h3 class="beer-price">45 kr.</h3>
+              <!-- <div class="button-group">
+              <button class="button-amount">-</button>
+              <p>0</p>
+              <button class="button-amount">+</button>
+              </div> -->
+
+              <input id="beer_" type="number" min="0">
+
+            </div>
+          </div>
+    </template>
+
+    <button class="buttontobasket">Gå til kurv</button>
+</section>
+
+
+
+<!-- Kurv ordreoversigt -->
+<!-- <div class="form-header">
+    <h1>Kurv</h1>
+    <div class="beer-basket">
+      <p id="basketamount">0</p> 
+      <img src="public/img/icons/beermug-single.png" alt="">
+    </div>
+  </div> -->
+  <form action="POST">
+<section id="basket-overview" class="hide">
+  <h1>Ordreoversigt</h1>
+  <button id="tilbageknap1" type="button"> 
+    BACK
+  </button>
+
+
+<template class="baskettemplate">
+    <div>
+        <div class="beer-info">
+          <img class="beer-image" src="public/img/beer/githop.png" alt="">
+            <div class="menu-column">
+              <h2 class="beer-name">Øl navn</h2>
+              <p class="alc">IPA, 5%</p>
+            </div>
+        </div>
+        <div class="menu-price">
+          <h3 class="beer-price">45 kr.</h3>
+          <!-- <div class="button-group">
+          <button class="button-amount">-</button>
+          <p>0</p>
+          <button class="button-amount">+</button>
+          </div>
+          <div> -->
+            <input id="beerbasket_" class="beer-amount" type="number" min="0">
+            <button class="button-remove">
+              <img src="public/img/icons/trash.png" alt="">
+              <p>Fjern fra ordre</p>
+            </button>
+          </div>
+
+          
+
+      </div>
+</template>
+
+
+<button class="sendordre" type="button">Gå til betaling</button>
+
+</section>
+
+
+
+<!-- Betalingsoplysninger -->
+<section id="basket-payment" class="hide">
+  <h1>Betalingsoplysninger</h1>
+  <button id="tilbageknap2" type="button"> 
+    BACK
+  </button>
+
+  <label for="cardholder_name">Kortholders navn
+    <input type="text" id="cardholder_name" name="Cardholders name" placeholder="Ex. John Doe" minlength="2" required>
+  </label>
+
+  <label for="ccnum">Kortnummer
+    <input type="text" id="ccnum" name="ccnum" maxlength="19" required />
+  </label>
+
+  <div class="form-expires">
+    <label for="expiry">Expiration</label>
+    <input placeholder="-- / --" size="7" type="tel" name="expiry" value="" id="expiry">
+</div>
+
+  <label for="ccv">CCV/CVD 
+    <input  type="text" id="ccv" name="ccv" placeholder="XXX" maxlength="3" size="3" required />
+  </label>
+
+
+<button class="betalordre" type="submit">Betal</button>
+
+</section>
+</form>
+
+    <script type="module" src="dummy.js"></script>
+</body>
+</html>

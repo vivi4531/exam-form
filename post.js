@@ -1,7 +1,7 @@
 "use strict";
 
 //POST ORDER 
-export function post(data){
+export function post(order){
 const endpoint = "https://teamellewoods.herokuapp.com/order"; 
 
 // const order = [
@@ -31,6 +31,15 @@ fetch(endpoint, {
 export function listenForClickOnSubmit(){  
   const form = document.querySelector("form"); 
 
+  basket.forEach((beer, i) => {
+    if(beer!=0){
+
+    orderlist.push(beer); 
+    }
+  });
+
+  //push til array i foreach
+
   // export function sendData(){
   form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -39,6 +48,8 @@ export function listenForClickOnSubmit(){
   const beeramount = document.querySelector(".beeramount"); 
   console.log(e.elements.beertype.value); 
   console.log(beeramount.value); 
+
+
 
   })
 }

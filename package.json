@@ -11,6 +11,7 @@
     "vite": "^2.3.3"
   },
   "dependencies": {
-    "jquery-creditcardvalidator": "^1.2.0"
+    "jquery-creditcardvalidator": "^1.2.0",
+    "payform": "^1.4.0"
   }
 }

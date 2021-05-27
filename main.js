@@ -3,6 +3,7 @@ import "./form.js";
 import "./post.js";
 import "./cardvalidation.js"; 
 import { listenForClickOnSubmit } from "./post.js";
+import "./menu.js"; 
 
 "use strict";
 
@@ -15,6 +16,7 @@ function init() {
 
 async function getData() {
   let url = "https://teamellewoods.herokuapp.com/beertypes";
+  let prices = "/prices.json"; 
   let jsonData = await fetch(url);
   jsonData = await jsonData.json();
   console.log({ jsonData });
