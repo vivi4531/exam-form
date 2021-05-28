@@ -6,37 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-#beer-menu img{
-    width: 50%;
-    border-radius: 50%;}
 
-      .hide{
-        display: none;
-      }
+     
     </style>
 </head>
 <body>
 
+  <!-- Startside -->
+  <section id="frontpage">
+  <div class="form-layout">
+    <div class="form-header">
+      <h1>FooBar</h1>
+    </div>
+    <div class="form-content">
+      <h2>Velkommen til FooBar!</h2>
+      <h3>Bestil din øl nu!</h3>
+      <button class="button-basic buttontomenu">Bestil øl her!</button>
+      <img src="public/img/icons/beermug-pair.png" alt="">
+    </div>
+</div>
+</section>
 
     <!-- Menu listeview -->
-    <div class="form-header">
+    <div id="form-header" class="form-header hide">
         <h1>Menu</h1>
         <div class="beer-basket">
           <p id="basketamount">0</p> 
           <img src="public/img/icons/beermug-single.png" alt="">
         </div>
+    
       </div>
 
-<section id="beer-menu" class="">
+<section id="beer-menu" class="form-content hide">
+  <button id="tilbageknap0" class="back-arrow" type="button"> 
+    <img src="public/img/icons/back-arrow.png" alt="">
+  </button>
     <template class="beertemplate">
-        <div>
             <div class="beer-info">
               <img class="beer-image" src="public/img/beer/githop.png" alt="">
                 <div class="menu-column">
                   <h2 class="beer-name">Øl navn</h2>
                   <p class="alc">IPA, 5%</p>
                 </div>
-            </div>
             <div class="menu-price">
               <h3 class="beer-price">45 kr.</h3>
               <!-- <div class="button-group">
@@ -45,13 +56,15 @@
               <button class="button-amount">+</button>
               </div> -->
 
-              <input id="beer_" type="number" min="0">
+              <input id="beer_" type="number" min="0" value="0">
 
             </div>
           </div>
     </template>
 
-    <button class="buttontobasket">Gå til kurv</button>
+    <div>
+      <button class="buttontobasket button-basic">Gå til kurv</button>
+    </div>
 </section>
 
 
@@ -102,7 +115,7 @@
 </template>
 
 
-<button class="sendordre" type="button">Gå til betaling</button>
+<button class="sendordre button-basic" type="button">Gå til betaling</button>
 
 </section>
 
@@ -133,11 +146,12 @@
   </label>
 
 
-<button class="betalordre" type="submit">Betal</button>
+<button class="betalordre button-basic" type="submit">Betal</button>
 
 </section>
 </form>
 
     <script type="module" src="dummy.js"></script>
+    <script type="module" src="/main.js"></script>
 </body>
 </html>

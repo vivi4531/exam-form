@@ -20,10 +20,18 @@ function init() {
   document.querySelector(".buttontobasket").addEventListener("click", buildBasket);
   document.querySelector(".sendordre").addEventListener("click", listenForClickOnSubmit);
   document.querySelector(".betalordre").addEventListener("click", post);
-  getData(); 
+  document.querySelector(".buttontomenu").addEventListener("click", getData);
+  
+  // getData(); 
 }
 
 async function getData() {
+  document.querySelector("#beer-menu").classList.remove("hide"); 
+  document.querySelector("#frontpage").classList.add("hide");
+  document.querySelector("#form-header").classList.remove("hide");
+
+  //document.querySelector("#tilbageknap0").addEventListener("click",() => {document.querySelector("#beer-menu").classList.add("hide"); document.querySelector("#frontpage").classList.remove("hide"); document.querySelector("#form-header").classList.add("hide");});
+
   let url = "https://teamellewoods.herokuapp.com/beertypes";
  jsonData = await fetch(url);
   jsonData = await jsonData.json();
@@ -35,6 +43,9 @@ async function getData() {
 
   let container = document.querySelector("#beer-menu");
   let temp = document.querySelector(".beertemplate");
+ 
+   
+
 
   //i = index 
   jsonData.forEach((beer, i) => {
@@ -118,8 +129,8 @@ function buildBasket(){
     basket.forEach((beer, i) => {
       document.querySelector("#beer_" + i).value = beer; 
     });
-
   }
+
 
 
   function listenForClickOnSubmit(){ 
