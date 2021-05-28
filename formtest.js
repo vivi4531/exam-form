@@ -16,20 +16,23 @@ console.log(payform.parseCardType(input.value)); //=> 'visa';
 } )
 
 
-
-
-
 //Valider MM/YY
-var inputexpiry = document.getElementById('expiry');
-payform.validateCardExpiry(input); 
+var inputmonth = document.getElementById('month');
+var inputyear = document.getElementById('year');
 
-inputexpiry.addEventListener("blur", ()=>{
-const validexpiry = payform.validateCardExpiry(input.value); //=> true
-console.log(input.value, validexpiry); 
+inputyear.addEventListener("blur", ()=>{
+const validyear = payform.validateCardExpiry(inputmonth.value, inputyear.value); //=> true
+console.log(inputmonth.value, inputyear.value, validyear); 
+    
+} ); 
 
-} )
 
+//CVC 
+var inputccv = document.getElementById('ccv');
 
-
+inputccv.addEventListener("blur", ()=>{
+    const validccv = payform.validateCardCVC(inputccv.value, input.value); //=> true
+    console.log(inputccv.value, input.value, validccv); 
+} ); 
 
 
