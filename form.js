@@ -39,11 +39,16 @@ async function getData() {
   let container = document.querySelector("#menu");
   let temp = document.querySelector(".beertemplate");
  
-   
 
 
   //i = index 
   jsonData.forEach((beer, i) => {
+
+    const beertype = [{ name: beer.name, amount: 1 }]; 
+    fetchBeerStatus(beertype).then(beerdata => {
+    
+    //Hvis status er lig 200 (på lager) så klon øllen i menuen
+    if(beerdata.status===200){
     const clone = temp.cloneNode(true).content;
 
     //Tilføjer plads i basket array
@@ -60,9 +65,13 @@ async function getData() {
     clone.querySelector(".beer-price").textContent = jsonPrices[i].price + " kr.";
     clone.querySelector(".alc").textContent = beer.alc + "% alc.";
 
-
+  
     container.appendChild(clone);
+    
+  }
+});
   });
+
 
   console.log(basket); 
 
@@ -192,12 +201,27 @@ function buildBasket(){
 
     });
   }
-  
 
-function post(){
+  async function fetchBeerStatus(data){
+
+    console.log(data)
+    const endpoint = "https://teamellewoods.herokuapp.com/order"; 
+    const tempdata = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }); 
+    
+    return await tempdata.json();
+  }
+
+async function post(){
+
   const endpoint = "https://teamellewoods.herokuapp.com/order"; 
 
-    fetch(endpoint, {
+    await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -212,7 +236,10 @@ function post(){
     .catch((error) => {
       console.error('Error:', error);
   });
+  
 }
+
+
   
 //funtion ordrebekræftelse (send data med) 
 //document.querySelector("#confirmation").classList.remove("hide");
