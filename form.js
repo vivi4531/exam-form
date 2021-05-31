@@ -20,11 +20,12 @@ function init() {
 }
 
 async function getData() {
-  document.querySelector("#beer-menu").classList.remove("hide"); 
+  document.querySelector("#menu").classList.remove("hide"); 
+  document.querySelector("#header").classList.remove("hide");
   document.querySelector("#frontpage").classList.add("hide");
-  document.querySelector("#form-header").classList.remove("hide");
 
-  //document.querySelector("#tilbageknap0").addEventListener("click",() => {document.querySelector("#beer-menu").classList.add("hide"); document.querySelector("#frontpage").classList.remove("hide"); document.querySelector("#form-header").classList.add("hide");});
+  //Pil tilbage til forsiden fra menu
+  document.querySelector("#buttontofrontpage").addEventListener("click",() => {document.querySelector("#menu").classList.add("hide"); document.querySelector("#frontpage").classList.remove("hide"); document.querySelector("#header").classList.add("hide");});
 
   let url = "https://teamellewoods.herokuapp.com/beertypes";
  jsonData = await fetch(url);
@@ -35,7 +36,7 @@ async function getData() {
   jsonPrices = await jsonPrices.json();
   console.log({ jsonData });
 
-  let container = document.querySelector("#beer-menu");
+  let container = document.querySelector("#menu");
   let temp = document.querySelector(".beertemplate");
  
    
@@ -71,7 +72,8 @@ function showDetails(i){
 console.log("Vis deltajer om øl"); 
 
 document.querySelector("#beer-single").classList.remove("hide"); 
-document.querySelector("#tilbageknap4").addEventListener("click", updateInput); 
+document.querySelector("#menu").classList.add("hide"); 
+document.querySelector("#buttonbacktomenu").addEventListener("click", updateInput); 
 
 document.querySelector(".beersingle-input").id = "beersingle_" + i; 
 
@@ -113,7 +115,7 @@ function updateBasket(){
 
 function buildBasket(){
     console.log("build basket");
-    document.querySelector("#beer-menu").classList.add("hide"); 
+    document.querySelector("#menu").classList.add("hide"); 
     document.querySelector("#beer-single").classList.add("hide"); 
     document.querySelector("#basket-overview").classList.remove("hide"); 
     document.querySelector("#tilbageknap1").addEventListener("click", updateInput); 
@@ -145,7 +147,7 @@ function buildBasket(){
 
 
   function updateInput(){
-    document.querySelector("#beer-menu").classList.remove("hide"); 
+    document.querySelector("#menu").classList.remove("hide"); 
     document.querySelector("#basket-overview").classList.add("hide"); 
     document.querySelector("#beer-single").classList.add("hide"); 
 
