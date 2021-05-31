@@ -92,6 +92,7 @@ document.querySelector("#beersingle_" + i ).addEventListener("change", updateBas
 document.querySelector("#beersingle_" + i).value = basket[i];
 
 document.querySelector("#beer-single .beer-image").src = `public/img/beer/${jsonData[i].label}`;
+document.querySelector("#header h1").textContent = `${jsonData[i].name}`;
 
 document.querySelector("#beer-single .beer-name").textContent = jsonData[i].name;
 document.querySelector("#beer-single .beer-price").textContent = jsonPrices[i].price + " kr.";
@@ -102,9 +103,6 @@ document.querySelector("#beer-single .desc").textContent = jsonData[i].descripti
 document.querySelector(".singleviewtobasket")
 
 }
-
-
-
 
 function updateBasket(){
     console.log("Update basket");
@@ -232,6 +230,8 @@ async function post(){
     .then(data => {
       console.log('Success:', data);
       //hent data.id
+      console.log(data.id); 
+      orderConfirmation(data.id);
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -241,9 +241,15 @@ async function post(){
 
 
   
-//funtion ordrebekræftelse (send data med) 
-//document.querySelector("#confirmation").classList.remove("hide");
+function orderConfirmation(id){
+console.log("tak for din ordre"); 
+document.querySelector("#confirmation").classList.remove("hide");
+document.querySelector("#basket-payment").classList.add("hide");
 
+document.querySelector(".ordreid").innerHTML = id;
+console.log(id); 
+
+}
 
 
 
