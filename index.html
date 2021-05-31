@@ -1,259 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Exam form</title>
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FooBar 🍻</title>
+    <style>
 
-<section class="form-layout">
-<form method="POST" action="">
+     
+    </style>
+</head>
+<body>
 
   <!-- Startside -->
-  <!-- <fieldset>
-    <div class="form-layout">
-        <div class="form-header">
-          <h1>FooBar</h1>
-        </div>
-        <div class="form-content">
-          <h2>Velkommen til FooBar!</h2>
-          <h3>Bestil din øl her!</h3>
-          <button class="button-basic">Bestil øl nu!</button>
-          <img src="public/img/icons/beermug-pair.png" alt="">
-          <h3>Se vores tre mest solgte øl lige nu!</h3>
-          <button class="button-basic button-topthree">Se top tre</button>
-        </div>
+  <section id="frontpage">
+  <div class="form-layout">
+    <div class="form-header">
+      <h1>FooBar</h1>
     </div>
-  </fieldset> -->
+    <div class="form-content">
+      <h2>Velkommen til FooBar!</h2>
+      <h3>Bestil din øl nu!</h3>
+      <button class="button-basic buttontomenu">Bestil øl her!</button>
+      <img src="public/img/icons/beermug-pair.png" alt="">
+    </div>
+</div>
+</section>
 
-  <!-- Menu loop view -->
-<fieldset>
-    <div class="form-layout">
-      <div class="form-header">
+    <!-- Menu listeview -->
+    <div id="form-header" class="form-header hide">
         <h1>Menu</h1>
         <div class="beer-basket">
-          <p>0</p> 
+          <p id="basketamount">0</p> 
           <img src="public/img/icons/beermug-single.png" alt="">
         </div>
-      </div>
-      
-      <div class="back-arrow">
-        <img src="/public/img/icons/back-arrow.png" alt="">
+    
       </div>
 
-      <div class="form-content">
+<section id="beer-menu" class="form-content hide">
+  <button id="tilbageknap0" class="back-arrow" type="button"> 
+    <img src="public/img/icons/back-arrow.png" alt="">
+  </button>
+    <template class="beertemplate">
+            <div class="beer-info">
+              <img class="beer-image" src="public/img/beer/githop.png" alt="">
+                <div class="menu-column">
+                  <h2 class="beer-name">Øl navn</h2>
+                  <p class="alc">IPA, 5%</p>
+                </div>
+            <div class="menu-price">
+              <h3 class="beer-price">45 kr.</h3>
+              <!-- <div class="button-group">
+              <button class="button-amount">-</button>
+              <p>0</p>
+              <button class="button-amount">+</button>
+              </div> -->
 
-        <div class="menu">
-        <div class="menu-info">
+              <input id="beer_" type="number" min="0" value="0">
 
+            </div>
+          </div>
+    </template>
+
+    <div>
+      <button class="buttontobasket button-basic">Gå til kurv</button>
+    </div>
+</section>
+
+
+<!-- Singleview / popup -->
+<section id="beer-single" class="form-content hide">
+  <button id="tilbageknap4" class="back-arrow" type="button"> 
+    <img src="public/img/icons/back-arrow.png" alt="">
+  </button>
+            <div class="beer-info">
+              <img class="beer-image" src="public/img/beer/githop.png" alt="">
+                <div class="menu-column">
+                  <h2 class="beer-name">Øl navn</h2>
+                  <p class="alc">IPA, 5%</p>
+                  <p class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, aspernatur.</p>
+                </div>
+            <div class="menu-price">
+              <h3 class="beer-price">45 kr.</h3>
+
+              <input id="beersingleinput" class="beersingle-input" type="number" min="0" value="0">
+
+            </div>
+          </div>
+
+    <div>
+      <button class="singleviewtobasket button-basic">Gå til kurv</button>
+    </div>
+</section>
+
+
+
+
+<!-- Kurv ordreoversigt -->
+<!-- <div class="form-header">
+    <h1>Kurv</h1>
+    <div class="beer-basket">
+      <p id="basketamount">0</p> 
+      <img src="public/img/icons/beermug-single.png" alt="">
+    </div>
+  </div> -->
+  <form action="POST">
+<section id="basket-overview" class="hide">
+  <h1>Ordreoversigt</h1>
+  <button id="tilbageknap1" type="button"> 
+    BACK
+  </button>
+
+
+<template class="baskettemplate">
+    <div>
+        <div class="beer-info">
           <img class="beer-image" src="public/img/beer/githop.png" alt="">
             <div class="menu-column">
-              <h2 class="beername">Øl navn</h2>
+              <h2 class="beer-name">Øl navn</h2>
               <p class="alc">IPA, 5%</p>
             </div>
         </div>
         <div class="menu-price">
-          <h3>45 kr.</h3>
-          <div class="button-group">
+          <h3 class="beer-price">45 kr.</h3>
+          <!-- <div class="button-group">
           <button class="button-amount">-</button>
           <p>0</p>
           <button class="button-amount">+</button>
           </div>
-        </div>
-      </div>
-
-      <button class="button-basic">Gå til kurv</button>
-      </div>
-    </div>
-  </fieldset>
-
-  <!-- Single view -->
-<!--   <fieldset>
-    <div class="form-layout">
-      <div class="form-header">
-        <h1>GitHop</h1>
-        <div class="beer-basket">
-          <p>0</p> 
-          <img src="public/img/icons/beermug-single.png" alt="">
-        </div>
-      </div>
-      
-      <div class="back-arrow">
-        <img src="/public/img/icons/back-arrow.png" alt="">
-      </div>
-
-      <div class="form-content">
-      <img class="beer-image" src="public/img/beer/githop.png" alt="">
-      <h2>Øl navn</h2>
-      <p>IPA, 5%</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum enim atque facere voluptate, labore necessitatibus culpa quibusdam error iusto provident autem perspiciatis deleniti neque corporis ipsam veritatis laudantium vel dolor!</p>
-
-      <h3>Pris</h3>
-      <div class="button-group">
-        <button class="button-amount">-</button>
-        <p>0</p>
-        <button class="button-amount">+</button>
-      </div>
-
-      <button class="button-basic">Gå til kurv</button>
-      </div>
-    </div>
-  </fieldset> -->
-
-  <!-- Kurv-->
-  <!-- <fieldset>
-    <div class="form-layout">
-      <div class="form-header">
-        <h1>Kurv</h1>
-        <div class="beer-basket">
-          <p>0</p> 
-          <img src="public/img/icons/beermug-single.png" alt="">
-        </div>
-      </div>
-      
-      <div class="back-arrow">
-        <img src="/public/img/icons/back-arrow.png" alt="">
-      </div>
-
-      <div class="form-content">
-
-        <div class="menu">
-        <div class="menu-info">
-          <img class="beer-image" src="public/img/beer/githop.png" alt="">
-            <div class="menu-column">
-              <h2 class="beertype">Øl navn</h2>
-              <p>IPA, 5%</p>
-            </div>
-    
-        </div>
-        <div class="menu-price">
-          <h3>45 kr.</h3>
-          <div class="button-group">
-          <button class="button-amount">-</button>
-          <p class="beeramount">2</p>
-          <button class="button-amount">+</button>
-          </div>
-          <div>
+          <div> -->
+            <input id="beerbasket_" class="beer-amount" type="number" min="0">
             <button class="button-remove">
               <img src="public/img/icons/trash.png" alt="">
               <p>Fjern fra ordre</p>
             </button>
           </div>
-        </div>
-      </div>
-    
-      <div class="menu-total">
-        <h2>I alt</h2>
-        <p>x kr.</p>
-      </div>
-      <button class="button-basic">Gå til betaling</button>
-      </div>
 
-      
+          
+
+      </div>
+</template>
+
+
+<button class="sendordre button-basic" type="button">Gå til betaling</button>
+
+</section>
+
+<!-- Tom kurv (hvis man ikke har noget i kurven)-->
+<section id="emptybasket-overview" class="hide">
+  <div class="form-layout">
+    <div class="form-header">
+      <h1>Kurv</h1>
     </div>
-  </fieldset>  -->
-
-  <!-- Kurv hvis man ikke har indhold -->
-<!--   <fieldset>
-    <div class="form-layout">
-      <div class="form-header">
-        <h1>Kurv</h1>
-        <div class="beer-basket">
-          <p>0</p> 
-          <img src="public/img/icons/beermug-single.png" alt="">
-        </div>
-      </div>
-      
-     <div class="back-arrow"> 
-        <img src="/public/img/icons/back-arrow.png" alt="">
-      </div>
-
-      <div class="basket-empty">
-        <h2>Du har ingen øl i kurven endnu!</h2>
-      </div>
-
-      <button class="button-basic">Bestil øl nu!</button>
-  
+    <div class="form-content">
+      <h3>Du har ingen øl i kurven endnu!</h3>
+      <button class="button-basic buttontomenu">Bestil øl her!</button>
+      <img src="public/img/icons/beermug-pair.png" alt="">
     </div>
-  </fieldset> -->
-
-
-<!-- Betalingsoplysninger -->
- <fieldset>
-    <div class="form-layout">
-      <div class="form-header">
-        <h1>Betaling</h1>
-      </div>
-      
-      <div class="back-arrow">
-        <img src="/public/img/icons/back-arrow.png" alt="">
-      </div>
-
-      <div class="form-content">
-
-      <label for="table">Bordnummer
-        <input type="text" id="table" name="Tablenumber" maxlength="3" size="3" placeholder="Ex. 123" required>
-      </label>  
-    
-      <label for="cardholder_name">Kortholders navn
-        <input type="text" id="cardholder_name" name="Cardholders name" placeholder="Ex. John Doe" minlength="2" required>
-      </label>
-    
-      <label for="card_number">Kortnummer
-        <input type="text" id="cc_number" name="Card number" maxlength="16" size="16" required />
-      </label>
-    
-      <div class="form-expires">
-        <label for="month">
-        <input type="text" id="month" name="month" placeholder="MM" maxlength="2" size="2" required />
-        /
-      </label>
-      
-      <label for="year">
-          <input type="text" id="year" name="year" placeholder="YY" maxlength="2" size="2" required />
-      </label>
-    </div>
-    
-      <label for="ccv">CCV/CVD 
-        <input type="text" id="ccv" name="ccv" placeholder="XXX" maxlength="3" size="3" required />
-      </label>
-    
-      <button type="submit" class="button-basic">Betal</button>
-      </div>
-    </div>
-  </fieldset> 
-
-
-    <!-- Bekræftelse -->
- <!--  <fieldset>
-    <div class="form-layout">
-        <div class="form-header">
-          <h1>Bekræftelse</h1>
-        </div>
-        <div class="form-content">
-          <h2>Tak!</h2>
-          <h3>Din ordre er godkendt!</h3>
-          <button class="button-basic">Til startstiden</button>
-          <img src="public/img/icons/beermug-pair.png" alt="">
-          <h3>Se vores tre mest solgte øl lige nu!</h3>
-          <button class="button-basic button-topthree">Se top tre</button>
-        </div>
-    </div>
-  </fieldset>  -->
-
-  
-
-  
-</form>
+</div>
 </section>
 
 
 
-    
+<!-- Betalingsoplysninger -->
+<section id="basket-payment" class="hide">
+  <h1>Betalingsoplysninger</h1>
+  <button id="tilbageknap2" type="button"> 
+    BACK
+  </button>
 
+  <label for="cardholder_name">Kortholders navn
+    <input type="text" id="cardholder_name" name="Cardholders name" placeholder="Ex. John Doe" minlength="2" required>
+  </label>
+
+  <label for="ccnum">Kortnummer
+    <input type="text" id="ccnum" name="ccnum" placeholder="1234 5678 9012 3456" maxlength="19" required />
+  </label>
+
+  <div class="form-expires">
+    <label for="expiry">Expiration</label>
+    <input placeholder="MM" size="7" type="tel" name="expiry" value="" id="month">
+    /
+    <input placeholder="YY" size="7" type="tel" name="expiry" value="" id="year">
+  </div>
+
+  <label for="ccv">CCV/CVD 
+    <input  type="text" id="ccv" name="ccv" placeholder="XXX" maxlength="3" size="3" required />
+  </label>
+
+
+<button class="betalordre button-basic" type="submit">Betal</button>
+
+</section>
+
+
+<!-- Ordrebekræftelse -->
+<section id="confirmation" class="hide">
+  <div class="form-layout">
+    <div class="form-header">
+      <h1>Bekræftelse</h1>
+    </div>
+    <div class="form-content">
+      <h2>Tak!</h2>
+      <h3>Din ordre er godkendt!</h3>
+      <h3>Du modtager en notifikation, når din ordre er klar til at blive hentet i baren.</h3>
+      <button class="button-basic buttontomenu">Til startsiden</button>
+      <img src="public/img/icons/beermug-pair.png" alt="">
+    </div>
+</div>
+</section>
+
+
+
+
+
+
+</form>
 
     <script type="module" src="/main.js"></script>
-  </body>
+</body>
 </html>
