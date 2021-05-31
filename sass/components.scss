@@ -1,11 +1,12 @@
 @import "colors";
 
 .hide {
-  display: none;
+  visibility: hidden;
 }
 
 section {
   height: 100vh;
+  position: absolute;
 }
 
 section .back-arrow {
@@ -118,7 +119,7 @@ section #beer-menu .menu {
 }
 
 .form-content {
-  display: flex;
+  // display: flex;
   // flex-wrap: wrap;
   // flex-direction: column;
   // align-items: center;
@@ -151,4 +152,9 @@ button {
   font-size: 1.3em;
   opacity: 0.75;
   width: 100%;
+}
+
+#beer-single {
+  background-color: #f2dac4;
+  // position: relative;
 }

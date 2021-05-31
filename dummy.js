@@ -18,6 +18,7 @@ let order = [];
 function init() {
   console.log("Der er hul igennem 🥳");
   document.querySelector(".buttontobasket").addEventListener("click", buildBasket);
+  document.querySelector(".singleviewtobasket").addEventListener("click", buildBasket);
   document.querySelector(".sendordre").addEventListener("click", listenForClickOnSubmit);
   document.querySelector(".betalordre").addEventListener("click", post);
   document.querySelector(".buttontomenu").addEventListener("click", getData);
@@ -59,12 +60,12 @@ async function getData() {
     clone.querySelector("#beer_" + i).addEventListener("change", updateBasket); 
 
     clone.querySelector(".beer-image").src = `public/img/beer/${beer.label}`;
+    clone.querySelector(".beer-image").addEventListener("click", () => showDetails(i));
+
     clone.querySelector(".beer-name").textContent = beer.name;
     clone.querySelector(".beer-price").textContent = jsonPrices[i].price + " kr.";
     clone.querySelector(".alc").textContent = beer.alc + "% alc.";
 
-    //Klik på øl og læs mere 
-    //clone.querySelector(".template-article").addEventListener("click", () => showDetails(beer, beerName));
 
     container.appendChild(clone);
   });
@@ -72,6 +73,34 @@ async function getData() {
   console.log(basket); 
 
 }
+
+function showDetails(i){
+console.log("Vis deltajer om øl"); 
+
+document.querySelector("#beer-single").classList.remove("hide"); 
+document.querySelector("#tilbageknap4").addEventListener("click", updateInput); 
+
+document.querySelector(".beersingle-input").id = "beersingle_" + i; 
+
+document.querySelector("#beersingle_" + i ).addEventListener("change", updateBasket); 
+
+//Opdater inputfelt med antal
+document.querySelector("#beersingle_" + i).value = basket[i];
+
+document.querySelector("#beer-single .beer-image").src = `public/img/beer/${jsonData[i].label}`;
+
+document.querySelector("#beer-single .beer-name").textContent = jsonData[i].name;
+document.querySelector("#beer-single .beer-price").textContent = jsonPrices[i].price + " kr.";
+document.querySelector("#beer-single .alc").textContent = jsonData[i].alc + "% alc.";
+document.querySelector("#beer-single .desc").textContent = jsonData[i].description.aroma;
+
+
+document.querySelector(".singleviewtobasket")
+
+}
+
+
+
 
 function updateBasket(){
     console.log("Update basket");
@@ -92,6 +121,7 @@ function updateBasket(){
 function buildBasket(){
     console.log("build basket");
     document.querySelector("#beer-menu").classList.add("hide"); 
+    document.querySelector("#beer-single").classList.add("hide"); 
     document.querySelector("#basket-overview").classList.remove("hide"); 
     document.querySelector("#tilbageknap1").addEventListener("click", updateInput); 
 
@@ -124,6 +154,7 @@ function buildBasket(){
   function updateInput(){
     document.querySelector("#beer-menu").classList.remove("hide"); 
     document.querySelector("#basket-overview").classList.add("hide"); 
+    document.querySelector("#beer-single").classList.add("hide"); 
 
     //Løb gennem array og opdater antal øl
     basket.forEach((beer, i) => {
@@ -137,6 +168,7 @@ function buildBasket(){
     console.log("der er klikket på gå til betaling"); 
     document.querySelector("#basket-overview").classList.add("hide"); 
     document.querySelector("#basket-payment").classList.remove("hide");
+    document.querySelector(".betalordre").addEventListener("click", post);
     order = [];
 
     const form = document.querySelector("form"); 
@@ -163,12 +195,12 @@ function buildBasket(){
     // console.log(e.elements.beertype.value); 
     // console.log(beeramount.value); 
 
-    })
+    });
   }
   
 
-  function post(){
-    const endpoint = "https://teamellewoods.herokuapp.com/order"; 
+function post(){
+  const endpoint = "https://teamellewoods.herokuapp.com/order"; 
 
     fetch(endpoint, {
       method: 'POST',
@@ -179,13 +211,15 @@ function buildBasket(){
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Success:', order);
+      console.log('Success:', data);
+      //hent data.id
     })
     .catch((error) => {
       console.error('Error:', error);
-    });
-    }
+  });
+}
   
+//funtion ordrebekræftelse (send data med) 
 
 
 
