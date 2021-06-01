@@ -263,6 +263,17 @@ document.querySelector("#basket-payment").classList.add("hide");
 document.querySelector(".ordreid").innerHTML = id;
 console.log(id); 
 
+//Tøm kurv
+basket = [];
+console.log(basket); 
+
+// jsonData.forEach((beer, i) => {
+//   console.log(i);
+//   document.querySelector("#beer_" + `${i +1}` ).value = 0;
+// });
+
+
+//document.querySelector("#basketamount").innerHTML = basket.length; 
 document.querySelector(".buttontofrontpagefromconfirmation").addEventListener("click", () => {document.querySelector("#confirmation").classList.add("hide"); document.querySelector("#frontpage").classList.remove("hide");});
 
 }
