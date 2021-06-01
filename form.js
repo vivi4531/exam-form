@@ -128,8 +128,8 @@ function buildBasket(){
     document.querySelector("#basket-overview").classList.remove("hide"); 
     document.querySelector("#buttonbaskettomenu").addEventListener("click", updateInput); 
 
-  
-    document.querySelector("#header h1").textContent = "Ordreoversigt";
+    //Ændre overskrift i header
+    document.querySelector("#header h1").textContent = "Kurv";
 
     let container = document.querySelector("#basket-overview");
     let temp = document.querySelector(".baskettemplate");
@@ -166,6 +166,9 @@ function buildBasket(){
     document.querySelector("#basket-overview").classList.add("hide"); 
     document.querySelector("#beer-single").classList.add("hide"); 
 
+    //Overskrift menu i header
+    document.querySelector("#header h1").innerHTML = "Menu";
+
     //Løb gennem array og opdater antal øl
     basket.forEach((beer, i) => {
 
@@ -185,8 +188,8 @@ function buildBasket(){
     document.querySelector("#basket-payment").classList.remove("hide");
     document.querySelector(".betalordre").addEventListener("click", post);
 
-    //Ændre overskrift i headeren
-    //document.querySelector("#header h1 #basket-payment").innerHTML = "Virker det";
+    //Ændre overskrift i header
+    document.querySelector("#header h1").textContent = "Betaling";
 
     order = [];
 
@@ -260,6 +263,10 @@ console.log("tak for din ordre");
 document.querySelector("#confirmation").classList.remove("hide");
 document.querySelector("#basket-payment").classList.add("hide");
 
+//Ændre overskrift i header
+document.querySelector("#header h1").textContent = "Bekræftelse";
+
+//Indsæt ordre id i tekst
 document.querySelector(".ordreid").innerHTML = id;
 console.log(id); 
 
