@@ -12,7 +12,8 @@ function init() {
   console.log("Der er hul igennem 🥳");
   document.querySelector(".buttontobasket").addEventListener("click", buildBasket);
   document.querySelector(".singleviewtobasket").addEventListener("click", buildBasket);
-  document.querySelector(".sendordre").addEventListener("click", listenForClickOnSubmit);
+  document.querySelector(".baskettopayment").addEventListener("click", listenForClickOnSubmit);
+  document.querySelector("#buttonbacktobasketoverview").addEventListener("click", () => {document.querySelector("#basket-payment").classList.add("hide"); document.querySelector("#basket-overview").classList.remove("hide");});
   document.querySelector(".betalordre").addEventListener("click", post);
   document.querySelector(".buttontomenu").addEventListener("click", getData);
   
@@ -125,7 +126,10 @@ function buildBasket(){
     document.querySelector("#menu").classList.add("hide"); 
     document.querySelector("#beer-single").classList.add("hide"); 
     document.querySelector("#basket-overview").classList.remove("hide"); 
-    document.querySelector("#tilbageknap1").addEventListener("click", updateInput); 
+    document.querySelector("#buttonbaskettomenu").addEventListener("click", updateInput); 
+
+  
+    document.querySelector("#header h1").textContent = "Ordreoversigt";
 
     let container = document.querySelector("#basket-overview");
     let temp = document.querySelector(".baskettemplate");
@@ -149,6 +153,10 @@ function buildBasket(){
       container.appendChild(clone);
       }
     });
+
+    //Opdater total pris
+    const totalprice = jsonPrices[i].beer.price * value; 
+    document.querySelector(".totalprice span").textContent = totalprice + " kr.";
     
   }
 
@@ -160,6 +168,8 @@ function buildBasket(){
 
     //Løb gennem array og opdater antal øl
     basket.forEach((beer, i) => {
+
+      //Tjek om øllen er på listen, hvis ja opdater value
       if(document.querySelector("#beer_" + i)!==null){
       document.querySelector("#beer_" + i).value = beer; 
       }
@@ -174,6 +184,10 @@ function buildBasket(){
     document.querySelector("#basket-overview").classList.add("hide"); 
     document.querySelector("#basket-payment").classList.remove("hide");
     document.querySelector(".betalordre").addEventListener("click", post);
+
+    //Ændre overskrift i headeren
+    //document.querySelector("#header h1 #basket-payment").innerHTML = "Virker det";
+
     order = [];
 
     const form = document.querySelector("form"); 
@@ -239,7 +253,6 @@ async function post(){
     .catch((error) => {
       console.error('Error:', error);
   });
-  
 }
 
 function orderConfirmation(id){
@@ -249,6 +262,9 @@ document.querySelector("#basket-payment").classList.add("hide");
 
 document.querySelector(".ordreid").innerHTML = id;
 console.log(id); 
+
+document.querySelector(".buttontofrontpagefromconfirmation").addEventListener("click", () => {document.querySelector("#confirmation").classList.add("hide"); document.querySelector("#frontpage").classList.remove("hide");});
+
 }
 
 
