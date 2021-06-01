@@ -160,8 +160,11 @@ function buildBasket(){
 
     //Løb gennem array og opdater antal øl
     basket.forEach((beer, i) => {
+      if(document.querySelector("#beer_" + i)!==null){
       document.querySelector("#beer_" + i).value = beer; 
+      }
     });
+  
   }
 
 
@@ -200,20 +203,20 @@ function buildBasket(){
     });
   }
 
-  async function fetchBeerStatus(data){
-
-    console.log(data)
-    const endpoint = "https://teamellewoods.herokuapp.com/order"; 
-    const tempdata = await fetch(endpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    }); 
-    
-    return await tempdata.json();
-  }
+async function fetchBeerStatus(data){
+  console.log(data)
+  
+  const endpoint = "https://teamellewoods.herokuapp.com/order"; 
+  const tempdata = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  }); 
+  
+  return await tempdata.json();
+}
 
 async function post(){
 
@@ -239,8 +242,6 @@ async function post(){
   
 }
 
-
-  
 function orderConfirmation(id){
 console.log("tak for din ordre"); 
 document.querySelector("#confirmation").classList.remove("hide");
@@ -248,7 +249,6 @@ document.querySelector("#basket-payment").classList.add("hide");
 
 document.querySelector(".ordreid").innerHTML = id;
 console.log(id); 
-
 }
 
 
