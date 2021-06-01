@@ -139,24 +139,25 @@
   </button>
 
   <label for="cardholder_name">Kortholders navn
-    <input type="text" id="cardholder_name" name="Cardholders name" placeholder="Ex. John Doe" minlength="2" required>
+    <input type="text" id="cardholder_name" name="Cardholdersname" placeholder="Ex. John Doe" minlength="2" required>
   </label>
+  <p class="error">Her er en fejl</p>
 
   <label for="ccnum">Kortnummer
-    <input type="text" id="ccnum" name="ccnum" placeholder="1234 5678 9012 3456" maxlength="19" required />
+    <input type="text" id="ccnum" name="ccnum" placeholder="1234 5678 9012 3456" minlength="19" maxlength="19"  required />
   </label>
 
   <div class="form-expires">
     <label for="expiry">Expiration</label>
     <div class="flex-form">
-      <input placeholder="MM" size="7" type="tel" name="expiry" value="" id="month" required>
+      <input placeholder="MM" pattern="[0-9]*" minlength="2" maxlength="2" size="2" type="tel" name="expiry" value="" id="month" required >
       <h3>/</h3>
-      <input placeholder="YY" size="7" type="tel" name="expiry" value="" id="year" required>
+      <input placeholder="YY" pattern="[0-9]*" minlength="2" maxlength="2" size="2" type="tel" name="expiry" value="" id="year" required >
     </div>
   </div>
 
   <label for="ccv">CCV/CVD 
-    <input  type="text" id="ccv" name="ccv" placeholder="XXX" maxlength="3" size="3" required />
+    <input placeholder="XXX" pattern="[0-9]*" type="text" id="ccv" name="ccv" minlength="3" maxlength="3" size="3" required />
   </label>
 
 <button class="betalordre button-basic" type="submit">Betal</button>
