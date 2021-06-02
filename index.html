@@ -39,6 +39,7 @@
   <button id="buttontofrontpage" class="back-arrow" type="button"> 
     <img src="public/img/icons/back-arrow.png" alt="">
   </button>
+  <div class="menu-container"></div>
   <template class="beertemplate">
     <div class="beer-info">
       <img class="beer-image" src="public/img/beer/githop.png" alt="">
@@ -48,7 +49,7 @@
     </div>
     <div class="menu-price">
       <h3 class="beer-price">45 kr.</h3>
-      <input id="beer_" type="number" min="0" value="0">
+      <input id="beer_" class="input-beer" type="number" min="0" value="0">
     </div>
     </div>
   </template>
@@ -69,7 +70,7 @@
     </div>
     <div class="menu-price">
       <h3 class="beer-price">45 kr.</h3>
-      <input id="beersingleinput" class="beersingle-input" type="number" min="0" value="0">
+      <input id="beersingleinput" class="beersingle-input input-beer" type="number" min="0" value="0">
     </div>
   </div>
   <div>
@@ -90,7 +91,7 @@
   <button id="buttonbaskettomenu" class="back-arrow" type="button"> 
     <img src="public/img/icons/back-arrow.png" alt="">
   </button>
-
+  <div class="basket-container"></div>
 <template class="baskettemplate">
   <div class="beer-info">
     <img class="beer-image" src="public/img/beer/githop.png" alt="">
@@ -101,7 +102,7 @@
   <div class="menu-price">
     <h3 class="beer-price">45 kr.</h3>
       <input id="beerbasket_" class="beer-amount" type="number" min="0">
-      <button class="button-remove">
+      <button type="button" id="removebutton_" class="button-remove">
         <img src="public/img/icons/trash.png" alt="">
         <p>Fjern fra ordre</p>
       </button>
@@ -123,8 +124,8 @@
       <h1>Kurv</h1>
     </div>
     <div class="form-content">
-      <h3>Du har ingen øl i kurven endnu!</h3>
-      <button class="button-basic buttontomenu">Bestil øl her!</button>
+      <h3>Du har ingen øl i kurven!</h3>
+      <button type="button" class="button-basic buttonbacktomenu">Bestil øl her!</button>
       <img src="public/img/icons/beermug-pair.png" alt="">
     </div>
 </div>

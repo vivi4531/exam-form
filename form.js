@@ -1,12 +1,14 @@
 "use strict";
 
+// const { build } = require("vite");
+
 window.addEventListener("DOMContentLoaded", init);
 
 let jsonData; 
 let jsonPrices; 
 let basket = []; 
 let order = [];
-
+let total = 0;
 
 function init() {
   console.log("Der er hul igennem 🥳");
@@ -16,6 +18,7 @@ function init() {
   document.querySelector("#buttonbacktobasketoverview").addEventListener("click", () => {document.querySelector("#basket-payment").classList.add("hide"); document.querySelector("#basket-overview").classList.remove("hide");});
   document.querySelector(".betalordre").addEventListener("click", post);
   document.querySelector(".buttontomenu").addEventListener("click", getData);
+  document.querySelector(".buttonbacktomenu").addEventListener("click", backToMenu);
   
   // getData(); 
 }
@@ -24,6 +27,7 @@ async function getData() {
   document.querySelector("#menu").classList.remove("hide"); 
   document.querySelector("#header").classList.remove("hide");
   document.querySelector("#frontpage").classList.add("hide");
+  document.querySelector("#emptybasket-overview").classList.add("hide");
 
   //Pil tilbage til forsiden fra menu
   document.querySelector("#buttontofrontpage").addEventListener("click",() => {document.querySelector("#menu").classList.add("hide"); document.querySelector("#frontpage").classList.remove("hide"); document.querySelector("#header").classList.add("hide");});
@@ -37,11 +41,14 @@ async function getData() {
   jsonPrices = await jsonPrices.json();
   console.log({ jsonData });
 
-  let container = document.querySelector("#menu");
+  let container = document.querySelector(".menu-container");
   let temp = document.querySelector(".beertemplate");
  
   //i = index 
   jsonData.forEach((beer, i) => {
+
+    //Tilføjer plads i basket array
+    basket.push(0); 
 
     const beertype = [{ name: beer.name, amount: 1 }]; 
     fetchBeerStatus(beertype).then(beerdata => {
@@ -49,9 +56,6 @@ async function getData() {
     //Hvis status er lig 200 (på lager) så klon øllen i menuen
     if(beerdata.status===200){
     const clone = temp.cloneNode(true).content;
-
-    //Tilføjer plads i basket array
-    basket.push(0); 
 
     //Input feltet viser id for den valgte øl 
     clone.querySelector("#beer_").id = "beer_" + i;
@@ -71,6 +75,22 @@ async function getData() {
 });
 
   console.log(basket); 
+
+}
+
+function backToMenu(){
+  console.log("Du er på startsiden");
+
+  document.querySelector("#menu").classList.remove("hide");
+  document.querySelector("#emptybasket-overview").classList.add("hide");
+
+  //Sæt inputfelter til 0
+  document.querySelectorAll(".input-beer").forEach((beer) => {
+    beer.value = 0; 
+  });
+  
+  //Sæt kurv til 0
+  document.querySelector("#basketamount").innerHTML = 0;  
 
 }
 
@@ -105,19 +125,38 @@ function updateBasket(){
   //.split = splitter id_x 
   //.pop = kun den sidste værdi (x) der bliver gemt i arrayet
   let beerid = this.id.split("_").pop();
+  let thisname = this.id.split("_").shift();
   console.log(beerid);
+  console.log(thisname);
 
-  //Vælger plads i array der stemmer overens med beerid og gemmer værdi fra inputfeltet som et nummer
-  basket[beerid] = Number(this.value); 
-  console.log(basket.reduce((a,b) => a+b));
-  console.log(basket); 
+  if(thisname == "removebutton"){
+    //Vælger plads i array der stemmer overens med beerid og sætter værdien til 0 (fjerner alle)
+    basket[beerid] = 0; 
+    buildBasket(); 
+  } else {
+    //Vælger plads i array der stemmer overens med beerid og gemmer værdi fra inputfeltet som et nummer
+    basket[beerid] = Number(this.value); 
+  }
+
+  console.log(basket);
 
   //Opdater antal øl i kurven (vist i menulinje)
   document.querySelector("#basketamount").innerHTML = (basket.reduce((a,b) => a+b)).toString();
+
+  total = 0; 
+
+    //buildBasket();
+    basket.forEach((beer, i) => {
+      if(beer!=0){
+        total += beer * jsonPrices[i].price;
+      }
+      }); 
+  document.querySelector(".totalprice").textContent = total + " kr.";
 }
 
 function buildBasket(){
-    console.log("build basket");
+  console.log("build basket");
+
     document.querySelector("#menu").classList.add("hide"); 
     document.querySelector("#beer-single").classList.add("hide"); 
     document.querySelector("#basket-overview").classList.remove("hide"); 
@@ -126,15 +165,27 @@ function buildBasket(){
     //Ændre overskrift i header
     document.querySelector("#header h1").textContent = "Kurv";
 
-    let container = document.querySelector("#basket-overview");
+    //Hvis der er nogle øl i kurven, skriv antal ud 
+    if((basket.reduce((a,b) => a+b)) != 0){
+      
+    let container = document.querySelector(".basket-container");
     let temp = document.querySelector(".baskettemplate");
-    
-  
+
+    //Nulstiller totalprisen 
+    total = 0;
+
+    //Tømmer HTML/kurven
+    container.innerHTML = "";
+
+    console.log(basket);
     basket.forEach((beer, i) => {
       //Hvis antallet af en bestemt øl er større end 0, så clon den 
       if(beer!=0){
       const clone = temp.cloneNode(true).content;
   
+      //Opdater total pris
+      total += beer * jsonPrices[i].price;
+
       //Input feltet viser id for den valgte øl 
       clone.querySelector("#beerbasket_").id = "beerbasket_" + i;
       clone.querySelector("#beerbasket_" + i).addEventListener("change", updateBasket); 
@@ -144,18 +195,25 @@ function buildBasket(){
       clone.querySelector(".beer-price").textContent = jsonPrices[i].price + " kr.";
       clone.querySelector(".alc").textContent = jsonData[i].alc + "% alc.";
       clone.querySelector(".beer-amount").value = beer;
+
+      //Fjern item fra kurv
+      clone.querySelector("#removebutton_").id = "removebutton_" + i;
+      clone.querySelector("#removebutton_" + i).addEventListener("click", updateBasket);
   
       container.appendChild(clone);
       }
   });
 
-    //Opdater total pris
-    //const totalprice = jsonPrices[i].beer.price * value; 
-    //document.querySelector(".totalprice span").textContent = totalprice + " kr.";
-    
+    //Skriv total pris ud
+    document.querySelector(".totalprice").textContent = total + " kr.";
+  }else{
+    //Hvis kurven er tom - vis tom kurv side
+    document.querySelector("#emptybasket-overview").classList.remove("hide");
+    document.querySelector("#basket-overview").classList.add("hide");
+  }
 }
 
-
+//Kaldes når man går fra kurv/singleview til menu og opdaterer inputfelterne med valgte antal øl
 function updateInput(){
     document.querySelector("#menu").classList.remove("hide"); 
     document.querySelector("#basket-overview").classList.add("hide"); 
@@ -190,15 +248,13 @@ function listenForClickOnSubmit(){
 
   basket.forEach((beer, i) => {
   if(beer!=0){
-      
+    
+  //Pusher object til array så det bliver json
   order.push({ name: jsonData[i].name, amount: beer });
-  //orderlist.push(beer); 
   console.log(order); 
     }
 });
     
-    //push til array i foreach
-  
     // export function sendData(){
     form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -261,18 +317,19 @@ document.querySelector("#header h1").textContent = "Bekræftelse";
 document.querySelector(".ordreid").innerHTML = id;
 console.log(id); 
 
-//Tøm kurv
-basket = [];
-console.log(basket); 
+//Tøm kurv og nulstil input
+basket.forEach((beer, i) => {
+  basket[i] = 0; 
+  
+});
 
-// jsonData.forEach((beer, i) => {
-//   console.log(i);
-//   document.querySelector("#beer_" + `${i +1}` ).value = 0;
-// });
+document.querySelectorAll(".input-beer").forEach((beer) => {
+  beer.value = 0; 
+});
 
+document.querySelector("#basketamount").innerHTML = 0;
 
-//document.querySelector("#basketamount").innerHTML = basket.length; 
-document.querySelector(".buttontofrontpagefromconfirmation").addEventListener("click", () => {document.querySelector("#confirmation").classList.add("hide"); document.querySelector("#frontpage").classList.remove("hide");});
+document.querySelector(".buttontofrontpagefromconfirmation").addEventListener("click", () => {document.querySelector("#confirmation").classList.add("hide"); document.querySelector("#frontpage").classList.remove("hide"); document.querySelector("#header h1").textContent = "Menu";});
 
 }
 
