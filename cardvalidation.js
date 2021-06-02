@@ -8,14 +8,14 @@ console.log(payform);
 var input = document.getElementById('ccnum');
 payform.cardNumberInput(input);
 
-input.addEventListener("blur", ()=>{
 // Validate a credit card number
+input.addEventListener("blur", ()=>{
 const valid = payform.validateCardNumber(input.value); //=> true
 console.log(input.value, valid); 
 
 // Get card type from number
 console.log(payform.parseCardType(input.value)); //=> 'visa'; 
-} )
+});
 
 
 //Valider MM/YY
@@ -25,11 +25,10 @@ var inputyear = document.getElementById('year');
 inputyear.addEventListener("blur", ()=>{
 const validyear = payform.validateCardExpiry(inputmonth.value, inputyear.value); //=> true
 console.log(inputmonth.value, inputyear.value, validyear); 
-    
 } ); 
 
 
-//CVC 
+//Valider CVC 
 var inputccv = document.getElementById('ccv');
 
 inputccv.addEventListener("blur", ()=>{

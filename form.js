@@ -29,19 +29,17 @@ async function getData() {
   document.querySelector("#buttontofrontpage").addEventListener("click",() => {document.querySelector("#menu").classList.add("hide"); document.querySelector("#frontpage").classList.remove("hide"); document.querySelector("#header").classList.add("hide");});
 
   let url = "https://teamellewoods.herokuapp.com/beertypes";
- jsonData = await fetch(url);
+  jsonData = await fetch(url);
   jsonData = await jsonData.json();
 
   let prices = "/prices.json"; 
-   jsonPrices = await fetch(prices);
+  jsonPrices = await fetch(prices);
   jsonPrices = await jsonPrices.json();
   console.log({ jsonData });
 
   let container = document.querySelector("#menu");
   let temp = document.querySelector(".beertemplate");
  
-
-
   //i = index 
   jsonData.forEach((beer, i) => {
 
@@ -66,13 +64,11 @@ async function getData() {
     clone.querySelector(".beer-price").textContent = jsonPrices[i].price + " kr.";
     clone.querySelector(".alc").textContent = beer.alc + "% alc.";
 
-  
     container.appendChild(clone);
     
-  }
-});
+    }
   });
-
+});
 
   console.log(basket); 
 
@@ -100,25 +96,24 @@ document.querySelector("#beer-single .beer-price").textContent = jsonPrices[i].p
 document.querySelector("#beer-single .alc").textContent = jsonData[i].alc + "% alc.";
 document.querySelector("#beer-single .desc").textContent = jsonData[i].description.aroma;
 
-
 document.querySelector(".singleviewtobasket")
 
 }
 
 function updateBasket(){
-    console.log("Update basket");
-    //.split = splitter id_x 
-    //.pop = kun den sidste værdi (x) der bliver gemt i arrayet
-    let beerid = this.id.split("_").pop();
-    console.log(beerid);
+  console.log("Update basket");
+  //.split = splitter id_x 
+  //.pop = kun den sidste værdi (x) der bliver gemt i arrayet
+  let beerid = this.id.split("_").pop();
+  console.log(beerid);
 
-    //Vælger plads i array der stemmer overens med beerid og gemmer værdi fra inputfeltet som et nummer
-    basket[beerid] = Number(this.value); 
-    console.log(basket.reduce((a,b) => a+b));
-    console.log(basket); 
+  //Vælger plads i array der stemmer overens med beerid og gemmer værdi fra inputfeltet som et nummer
+  basket[beerid] = Number(this.value); 
+  console.log(basket.reduce((a,b) => a+b));
+  console.log(basket); 
 
-    //Opdater antal øl i kurven (vist i menulinje)
-    document.querySelector("#basketamount").innerHTML = (basket.reduce((a,b) => a+b)).toString();
+  //Opdater antal øl i kurven (vist i menulinje)
+  document.querySelector("#basketamount").innerHTML = (basket.reduce((a,b) => a+b)).toString();
 }
 
 function buildBasket(){
@@ -152,16 +147,16 @@ function buildBasket(){
   
       container.appendChild(clone);
       }
-    });
+  });
 
     //Opdater total pris
-    const totalprice = jsonPrices[i].beer.price * value; 
-    document.querySelector(".totalprice span").textContent = totalprice + " kr.";
+    //const totalprice = jsonPrices[i].beer.price * value; 
+    //document.querySelector(".totalprice span").textContent = totalprice + " kr.";
     
-  }
+}
 
 
-  function updateInput(){
+function updateInput(){
     document.querySelector("#menu").classList.remove("hide"); 
     document.querySelector("#basket-overview").classList.add("hide"); 
     document.querySelector("#beer-single").classList.add("hide"); 
@@ -172,39 +167,35 @@ function buildBasket(){
     //Løb gennem array og opdater antal øl
     basket.forEach((beer, i) => {
 
-      //Tjek om øllen er på listen, hvis ja opdater value
-      if(document.querySelector("#beer_" + i)!==null){
-      document.querySelector("#beer_" + i).value = beer; 
-      }
-    });
-  
-  }
+    //Tjek om øllen er på listen, hvis ja opdater value
+    if(document.querySelector("#beer_" + i)!==null){
+    document.querySelector("#beer_" + i).value = beer; 
+    }
+  });  
+}
 
+function listenForClickOnSubmit(){ 
+  console.log("der er klikket på gå til betaling"); 
+  document.querySelector("#basket-overview").classList.add("hide"); 
+  document.querySelector("#basket-payment").classList.remove("hide");
+  document.querySelector(".betalordre").addEventListener("click", post);
 
+  //Ændre overskrift i header
+  document.querySelector("#header h1").textContent = "Betaling";
 
-  function listenForClickOnSubmit(){ 
-    console.log("der er klikket på gå til betaling"); 
-    document.querySelector("#basket-overview").classList.add("hide"); 
-    document.querySelector("#basket-payment").classList.remove("hide");
-    document.querySelector(".betalordre").addEventListener("click", post);
+  order = [];
 
-    //Ændre overskrift i header
-    document.querySelector("#header h1").textContent = "Betaling";
+  const form = document.querySelector("form"); 
+  //console.log(basket);
 
-    order = [];
-
-    const form = document.querySelector("form"); 
-    //console.log(basket);
-
-    basket.forEach((beer, i) => {
-      if(beer!=0){
-        
-  
-        order.push({ name: jsonData[i].name, amount: beer });
-      //orderlist.push(beer); 
-      console.log(order); 
-      }
-    });
+  basket.forEach((beer, i) => {
+  if(beer!=0){
+      
+  order.push({ name: jsonData[i].name, amount: beer });
+  //orderlist.push(beer); 
+  console.log(order); 
+    }
+});
     
     //push til array i foreach
   
@@ -217,8 +208,8 @@ function buildBasket(){
     // console.log(e.elements.beertype.value); 
     // console.log(beeramount.value); 
 
-    });
-  }
+  });
+}
 
 async function fetchBeerStatus(data){
   console.log(data)
