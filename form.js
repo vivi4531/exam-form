@@ -36,7 +36,7 @@ async function getData() {
   jsonData = await fetch(url);
   jsonData = await jsonData.json();
 
-  let prices = "./public/prices.json"; 
+  let prices = "./prices.json"; 
   jsonPrices = await fetch(prices);
   jsonPrices = await jsonPrices.json();
   console.log({ jsonData });
