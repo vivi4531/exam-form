@@ -61,7 +61,7 @@ async function getData() {
     clone.querySelector("#beer_").id = "beer_" + i;
     clone.querySelector("#beer_" + i).addEventListener("change", updateBasket); 
 
-    clone.querySelector(".beer-image").src = `public/img/beer/${beer.label}`;
+    clone.querySelector(".beer-image").src = `./img/beer/${beer.label}`;
     clone.querySelector(".beer-image").addEventListener("click", () => showDetails(i));
 
     clone.querySelector(".beer-name").textContent = beer.name;
@@ -108,7 +108,7 @@ document.querySelector("#beersingle_" + i ).addEventListener("change", updateBas
 //Opdater inputfelt med antal
 document.querySelector("#beersingle_" + i).value = basket[i];
 
-document.querySelector("#beer-single .beer-image").src = `public/img/beer/${jsonData[i].label}`;
+document.querySelector("#beer-single .beer-image").src = `img/beer/${jsonData[i].label}`;
 document.querySelector("#header h1").textContent = `${jsonData[i].name}`;
 
 document.querySelector("#beer-single .beer-name").textContent = jsonData[i].name;
@@ -190,7 +190,7 @@ function buildBasket(){
       clone.querySelector("#beerbasket_").id = "beerbasket_" + i;
       clone.querySelector("#beerbasket_" + i).addEventListener("change", updateBasket); 
   
-      clone.querySelector(".beer-image").src = `public/img/beer/${jsonData[i].label}`;
+      clone.querySelector(".beer-image").src = `./img/beer/${jsonData[i].label}`;
       clone.querySelector(".beer-name").textContent = jsonData[i].name;
       clone.querySelector(".beer-price").textContent = jsonPrices[i].price + " kr.";
       clone.querySelector(".alc").textContent = jsonData[i].alc + "% alc.";
