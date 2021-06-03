@@ -110,6 +110,7 @@ document.querySelector("#beersingle_" + i).value = basket[i];
 
 document.querySelector("#beer-single .beer-image").src = `img/beer/${jsonData[i].label}`;
 document.querySelector("#header h1").textContent = `${jsonData[i].name}`;
+document.querySelector("#header h1").style.fontSize = "1.8em"; 
 
 document.querySelector("#beer-single .beer-name").textContent = jsonData[i].name;
 document.querySelector("#beer-single .beer-price").textContent = jsonPrices[i].price + " kr.";
@@ -240,6 +241,7 @@ function listenForClickOnSubmit(){
 
   //Ændre overskrift i header
   document.querySelector("#header h1").textContent = "Betaling";
+  document.querySelector("#header h1").style.fontSize = "3em"; 
 
   order = [];
 
@@ -312,6 +314,7 @@ document.querySelector("#basket-payment").classList.add("hide");
 
 //Ændre overskrift i header
 document.querySelector("#header h1").textContent = "Bekræftelse";
+document.querySelector("#header h1").style.fontSize = "3em"; 
 
 //Indsæt ordre id i tekst
 document.querySelector(".ordreid").innerHTML = id;

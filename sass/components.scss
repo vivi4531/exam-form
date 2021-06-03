@@ -106,6 +106,10 @@ section .back-arrow {
   display: flex;
   justify-content: space-between;
 
+  .menu-container {
+    padding-top: 2em;
+  }
+
   .beer-info {
     display: flex;
     // flex-wrap: wrap;
@@ -250,11 +254,8 @@ h2 {
     /* align-items: center; */
     justify-content: space-around;
     align-items: center;
-    padding-bottom: 5vh;
-
-    align-items: center;
     border-bottom: 1px solid $darkgreen;
-    padding-bottom: 5vh;
+    padding: 5vh 0 5vh 0;
 
     img:not(.button-remove img) {
       border-radius: 50%;
@@ -273,6 +274,7 @@ h2 {
     align-items: center;
     width: 100%;
     justify-content: space-between;
+    padding: 5vh 0 5vh 0;
 
     h3 {
       font-family: "Special Elite", cursive;
@@ -369,6 +371,15 @@ h2 {
   // align-items: center;
   // border-bottom: 1px solid $darkgreen;
   // padding-bottom: 5vh;
+
+  h1 {
+    font-size: 3em;
+    text-align: center;
+  }
+
+  .buttonbacktomenu {
+    font-size: 1.1em;
+  }
 
   .beer-info {
     display: flex;

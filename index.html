@@ -118,17 +118,27 @@
 </section>
 
 <!-- Tom kurv (hvis man ikke har noget i kurven)-->
-<section id="emptybasket-overview" class="content hide">
+<!-- <section id="emptybasket-overview" class="content hide">
   <div class="form-layout">
-    <div class="form-header">
-      <h1>Kurv</h1>
+  <div class="form-header">
+  </div>
+  <div class="form-content">
+  <h3>Du har ingen øl i kurven!</h3>
+  <button type="button" class="button-basic buttonbacktomenu">Bestil øl her!</button>
+  <img src="public/img/icons/beermug-pair.png" alt="">
+  </div>
+  </div>
+</section> -->
+
+<!-- Tom kurv test -->
+<section id="emptybasket-overview" class="content hide">
+  <div class="layout">
+  <div class="content">
+    <h1>Du har ingen øl i kurven!</h1>
+    <button type="button" class="button-basic buttonbacktomenu">Bestil øl her!</button>
+    <img src="public/img/icons/beermug-pair.png" alt="">
     </div>
-    <div class="form-content">
-      <h3>Du har ingen øl i kurven!</h3>
-      <button type="button" class="button-basic buttonbacktomenu">Bestil øl her!</button>
-      <img src="public/img/icons/beermug-pair.png" alt="">
-    </div>
-</div>
+  </div>
 </section>
 
 
@@ -142,14 +152,14 @@
   <label for="cardholder_name">Kortholders navn
     <input type="text" id="cardholder_name" name="Cardholdersname" placeholder="Ex. John Doe" minlength="2" required>
   </label>
-  <p class="error">Her er en fejl</p>
+  <!-- <p class="error">Her er en fejl</p> -->
 
   <label for="ccnum">Kortnummer
     <input type="text" id="ccnum" name="ccnum" placeholder="1234 5678 9012 3456" minlength="19" maxlength="19" required />
   </label>
 
   <div class="form-expires">
-    <label for="expiry">Expiration</label>
+    <label for="expiry">Udløbsdato</label>
     <div class="flex-form">
       <input placeholder="MM" maxlength="2" size="2" type="tel" name="expiry" value="" id="month" required >
       <h3>/</h3>
