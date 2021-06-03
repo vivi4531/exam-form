@@ -19,8 +19,6 @@ function init() {
   document.querySelector(".betalordre").addEventListener("click", post);
   document.querySelector(".buttontomenu").addEventListener("click", getData);
   document.querySelector(".buttonbacktomenu").addEventListener("click", backToMenu);
-  
-  // getData(); 
 }
 
 async function getData() {
@@ -42,6 +40,7 @@ async function getData() {
   console.log({ jsonData });
 
   let container = document.querySelector(".menu-container");
+  
   let temp = document.querySelector(".beertemplate");
  
   //i = index 
