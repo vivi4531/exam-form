@@ -341,7 +341,8 @@ document.querySelectorAll(".input-beer").forEach((beer) => {
 
 document.querySelector("#basketamount").innerHTML = 0;
 
-document.querySelector(".buttontofrontpagefromconfirmation").addEventListener("click", () => {document.querySelector("#confirmation").classList.add("hide"); document.querySelector("#frontpage").classList.remove("hide"); document.querySelector("#header h1").textContent = "Menu";});
+document.querySelector(".buttontofrontpagefromconfirmation").addEventListener("click", () => {document.querySelector("#confirmation").classList.add("hide"); document.querySelector("#frontpage").classList.remove("hide"); document.querySelector("#header h1").textContent = "Menu"; //Rul til toppen
+window.scrollTo(0,0);});
 
 }
 
