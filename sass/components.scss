@@ -524,14 +524,14 @@ h2 {
 
 #basket-payment {
   //VALIDATION
-  .error {
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.3s ease;
-    color: $darkgrey;
-    // margin-top: -10vh;
-    margin-top: -2em;
-  }
+  // .error {
+  //   opacity: 0;
+  //   visibility: hidden;
+  //   transition: 0.3s ease;
+  //   color: $darkgrey;
+  //   // margin-top: -10vh;
+  //   margin-top: -2em;
+  // }
 
   input[name="Cardholdersname"]:not(:focus, :placeholder-shown):invalid,
   input[name="ccnum"]:not(:focus, :placeholder-shown):invalid,
@@ -541,14 +541,14 @@ h2 {
     color: $white;
   }
 
-  input[name="Cardholdersname"]:not(:focus, :placeholder-shown):invalid
-    ~ .error,
-  input[name="ccnum"]:not(:focus, :placeholder-shown):invalid ~ .error,
-  input[name="expiry"]:not(:focus, :placeholder-shown):invalid ~ .error,
-  input[name="ccv"]:not(:focus, :placeholder-shown):invalid ~ .error {
-    opacity: 1;
-    visibility: visible;
-  }
+  // input[name="Cardholdersname"]:not(:focus, :placeholder-shown):invalid
+  //   ~ .error,
+  // input[name="ccnum"]:not(:focus, :placeholder-shown):invalid ~ .error,
+  // input[name="expiry"]:not(:focus, :placeholder-shown):invalid ~ .error,
+  // input[name="ccv"]:not(:focus, :placeholder-shown):invalid ~ .error {
+  //   opacity: 1;
+  //   visibility: visible;
+  // }
 
   input[name="Cardholdersname"]:not(:focus, :placeholder-shown):valid,
   input[name="ccnum"]:not(:focus, :placeholder-shown):valid,
