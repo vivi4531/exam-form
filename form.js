@@ -163,6 +163,9 @@ function buildBasket(){
     document.querySelector("#basket-overview").classList.remove("hide"); 
     document.querySelector("#buttonbaskettomenu").addEventListener("click", updateInput); 
 
+    //Rul til toppen
+    window.scrollTo(0,0);
+
     //Ændre overskrift i header
     document.querySelector("#header h1").textContent = "Kurv";
 
@@ -239,6 +242,9 @@ function listenForClickOnSubmit(){
   document.querySelector("#basket-payment").classList.remove("hide");
   document.querySelector(".betalordre").addEventListener("click", post);
 
+  //Rul til toppen
+  window.scrollTo(0,0);
+
   //Ændre overskrift i header
   document.querySelector("#header h1").textContent = "Betaling";
   document.querySelector("#header h1").style.fontSize = "3em"; 
@@ -311,6 +317,9 @@ function orderConfirmation(id){
 console.log("tak for din ordre"); 
 document.querySelector("#confirmation").classList.remove("hide");
 document.querySelector("#basket-payment").classList.add("hide");
+
+//Rul til toppen
+window.scrollTo(0,0);
 
 //Ændre overskrift i header
 document.querySelector("#header h1").textContent = "Bekræftelse";
