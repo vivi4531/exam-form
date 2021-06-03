@@ -341,6 +341,29 @@ document.querySelectorAll(".input-beer").forEach((beer) => {
 
 document.querySelector("#basketamount").innerHTML = 0;
 
+//Nulstil inputfelter betaling
+document.querySelector("#cardholder_name").value = "";
+document.querySelector("#cardholder_name").style.backgroundColor = "";
+document.querySelector("#cardholder_name").style.color = "none";
+
+document.querySelector("#ccnum").value = "";
+document.querySelector("#ccnum").style.backgroundColor = "";
+document.querySelector("#ccnum").style.color = "none";
+
+
+document.querySelector("#month").value = "";
+document.querySelector("#month").style.backgroundColor = "";
+document.querySelector("#month").style.color = "none";
+
+document.querySelector("#year").value = "";
+document.querySelector("#year").style.backgroundColor = "";
+document.querySelector("#year").style.color = "none";
+
+document.querySelector("#ccv").value = "";
+document.querySelector("#ccv").style.backgroundColor = "";
+document.querySelector("#ccv").style.color = "none";
+
+
 document.querySelector(".buttontofrontpagefromconfirmation").addEventListener("click", () => {document.querySelector("#confirmation").classList.add("hide"); document.querySelector("#frontpage").classList.remove("hide"); document.querySelector("#header h1").textContent = "Menu"; //Rul til toppen
 window.scrollTo(0,0);});
 

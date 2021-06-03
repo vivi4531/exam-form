@@ -16,11 +16,19 @@ var inputname = document.getElementById('cardholder_name');
 inputname.addEventListener("change", () =>{
     if(inputname.value){
         cardholdername = true; 
-        activatePayButton(); 
+        console.log(cardholdername);
+        inputname.style.backgroundColor = "darkgreen"; 
+        inputname.style.color = "white"; 
+        
     } else {
         cardholdername = false; 
+        console.log(cardholdername);
+        inputname.style.backgroundColor = "brown"; 
+        inputname.style.color = "white"; 
+
     }
-    console.log(inputname.value); 
+    //console.log(inputname.value); 
+    activatePayButton(); 
 });
 
 
@@ -33,9 +41,18 @@ input.addEventListener("blur", ()=>{
 const valid = payform.validateCardNumber(input.value); //=> true
 console.log(input.value, valid); 
 
+if(valid){
 cardnumber = valid; 
-activatePayButton();
+    input.style.backgroundColor = "darkgreen"; 
+    input.style.color = "white"; 
+    
+}else {
+    cardnumber = false; 
+    input.style.backgroundColor = "brown"; 
+    input.style.color = "white"; 
 
+}
+activatePayButton();
 // Get card type from number
 console.log(payform.parseCardType(input.value)); //=> 'visa'; 
 });
@@ -48,9 +65,22 @@ var inputyear = document.getElementById('year');
 inputyear.addEventListener("blur", ()=>{
 const validyear = payform.validateCardExpiry(inputmonth.value, inputyear.value); //=> true
 
+if(validyear){
 cardexpire = validyear; 
-activatePayButton();
+inputmonth.style.backgroundColor = "darkgreen";
+inputmonth.style.color = "white";
+inputyear.style.backgroundColor = "darkgreen";
+inputyear.style.color = "white";
 
+}
+else {
+    cardexpire = false; 
+    inputmonth.style.backgroundColor = "brown"; 
+    inputmonth.style.color = "white"; 
+    inputyear.style.backgroundColor = "brown"; 
+    inputyear.style.color = "white"; 
+}
+activatePayButton();
 console.log(inputmonth.value, inputyear.value, validyear); 
 } ); 
 
@@ -62,8 +92,15 @@ inputccv.addEventListener("blur", ()=>{
     const validccv = payform.validateCardCVC(inputccv.value, input.value); //=> true
 
     cardcvc = validccv; 
+    if(validccv){
+        inputccv.style.backgroundColor = "darkgreen";
+        inputccv.style.color = "white";
+    
+    } else {
+        inputccv.style.backgroundColor = "brown";
+        inputccv.style.color = "white";
+    }
     activatePayButton();
-
     console.log(inputccv.value, input.value, validccv); 
 } ); 
 
@@ -71,8 +108,11 @@ function activatePayButton(){
 
     if(cardholdername && cardnumber && cardexpire && cardcvc){
         document.querySelector(".betalordre").addEventListener("click", post);
+        console.log("addevetlistnere");
+    } else {
+        document.querySelector(".betalordre").removeEventListener("click", post);
+        console.log("removeeventliste");
     }
-
 
 }
 
