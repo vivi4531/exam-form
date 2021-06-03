@@ -40,7 +40,8 @@ async function getData() {
   console.log({ jsonData });
 
   let container = document.querySelector(".menu-container");
-  
+  //Tømmer container så listen med øl ikke lægges ind flere gange
+  container.innerHTML = "";
   let temp = document.querySelector(".beertemplate");
  
   //i = index 
