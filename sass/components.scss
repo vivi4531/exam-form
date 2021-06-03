@@ -491,6 +491,10 @@ h2 {
     padding: 1em 6em 1em 2em;
     width: 100%;
 
+    @media screen and (min-width: 1180px) {
+      width: 100vw;
+    }
+
     input[type="text"]:placeholder-shown {
       color: red;
     }
