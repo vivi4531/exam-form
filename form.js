@@ -16,7 +16,7 @@ function init() {
   document.querySelector(".singleviewtobasket").addEventListener("click", buildBasket);
   document.querySelector(".baskettopayment").addEventListener("click", listenForClickOnSubmit);
   document.querySelector("#buttonbacktobasketoverview").addEventListener("click", () => {document.querySelector("#basket-payment").classList.add("hide"); document.querySelector("#basket-overview").classList.remove("hide");});
-  document.querySelector(".betalordre").addEventListener("click", post);
+  //document.querySelector(".betalordre").addEventListener("click", post);
   document.querySelector(".buttontomenu").addEventListener("click", getData);
   document.querySelector(".buttonbacktomenu").addEventListener("click", backToMenu);
 }
@@ -240,7 +240,7 @@ function listenForClickOnSubmit(){
   console.log("der er klikket på gå til betaling"); 
   document.querySelector("#basket-overview").classList.add("hide"); 
   document.querySelector("#basket-payment").classList.remove("hide");
-  document.querySelector(".betalordre").addEventListener("click", post);
+  //document.querySelector(".betalordre").addEventListener("click", post);
 
   //Rul til toppen
   window.scrollTo(0,0);
@@ -290,7 +290,7 @@ async function fetchBeerStatus(data){
   return await tempdata.json();
 }
 
-async function post(){
+export async function post(){
 
   const endpoint = "https://teamellewoods.herokuapp.com/order"; 
 
